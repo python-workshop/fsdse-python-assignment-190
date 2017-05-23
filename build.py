@@ -1,12 +1,14 @@
-def build(num):
+def add_digits(num):
     if num is None:
-        return False
+        raise TypeError('num cannot be None')
     if num < 0:
-        return False
-    if num == 0:
-        return 0
-    elif num % 9 == 0:
-        return 9
+        raise ValueError('num cannot be negative')
+    digits = []
+    while num != 0:
+        digits.append(num % 10)
+        num //= 10
+    digits_sum = sum(digits)
+    if digits_sum >= 10:
+        return add_digits(digits_sum)
     else:
-        value = num % 9
-        return  True
+        return digits_sum
